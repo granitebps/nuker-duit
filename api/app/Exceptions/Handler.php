@@ -37,7 +37,7 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
-        $this->renderable(function (Exception $e) {
+        $this->renderable(function (Throwable $e) {
             return $this->handleException($e);
         });
     }
@@ -45,11 +45,11 @@ class Handler extends ExceptionHandler
     /**
      * Check and Handle somes Exception
      *
-     * @param Exception $exception
+     * @param Throwable $exception
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    private function handleException(Exception $exception)
+    private function handleException(Throwable $exception)
     {
         if ($exception instanceof NotFoundHttpException) {
             if ($exception->getPrevious() instanceof ModelNotFoundException) {
