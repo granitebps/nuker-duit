@@ -21,4 +21,10 @@ class AuthController extends Controller
     {
         return Helper::apiResponse('Success Login', $this->authService->login($request->validated()));
     }
+
+    public function logout(Request $request): JsonResponse
+    {
+        $request->user()->currentAccessToken()->delete();
+        return Helper::apiResponse('Success Logout');
+    }
 }
