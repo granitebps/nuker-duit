@@ -23,7 +23,7 @@ const Login = () => {
       const token = data.data.token;
       localStorage.setItem('nuker-duit-token', token);
 
-      // navigate('/home');
+      navigate('/home');
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(error.response.data.message);
