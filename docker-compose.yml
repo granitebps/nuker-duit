@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    container_name: api
+    volumes:
+      - ./api:/var/www
+    ports:
+      - '8000:80'
+    networks:
+      - app-network
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      POSTGRES_DB: '${DB_DATABASE}'
+      POSTGRES_USER: '${DB_USERNAME}'
+      POSTGRES_PASSWORD: '${DB_PASSWORD}'
+    volumes:
+      - dbstore:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  dbstore:
+    driver: local
