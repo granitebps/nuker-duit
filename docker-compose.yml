@@ -17,6 +17,22 @@ services:
     links:
       - db
 
+  app:
+    build:
+      context: ./app
+      dockerfile: ./Dockerfile
+    container_name: app
+    ports:
+      - '3000:80'
+    networks:
+      - app-network
+    depends_on:
+      - db
+      - api
+    links:
+      - db
+      - api
+
   db:
     image: postgres
     container_name: db
