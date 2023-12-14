@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CurrencyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,7 @@ Route::post('login', [AuthController::class, 'login'])->name('auth.login');
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::delete('logout', [AuthController::class, 'logout'])->name('auth.logout');
+
+    Route::get('currencies', [CurrencyController::class, 'listCurrencies'])->name('currencies.index');
+    Route::get('currencies/{currency}', [CurrencyController::class, 'getCurrency'])->name('currencies.show');
 });

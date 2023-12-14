@@ -29,5 +29,20 @@ class DatabaseSeeder extends Seeder
                     'updated_at' => now(),
                 ]);
         }
+
+        $currencies = ['usd', 'jpy', 'eur', 'sgd'];
+        foreach ($currencies as $c) {
+            $currency = DB::table('currencies')
+                ->where('name', $c)
+                ->first();
+            if (empty($currency)) {
+                DB::table('currencies')
+                    ->insert([
+                        'name' => $c,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+            }
+        }
     }
 }

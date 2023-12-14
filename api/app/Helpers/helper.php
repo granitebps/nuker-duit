@@ -45,4 +45,13 @@ class Helper
             'data' => $data
         ], $code);
     }
+
+    /**
+     * @param float $cur
+     * @return string
+     */
+    public static function formatCurrencyToString(float $cur): string
+    {
+        return number_format($cur, 2, '.', '');
+    }
 }
