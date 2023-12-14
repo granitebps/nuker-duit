@@ -25,6 +25,7 @@ class TransactionRepository
                 'currency_id' => $input['currency_id'],
                 'side' => $input['side'],
                 'amount' => $input['amount'],
+                'rate' => $input['rate'],
                 'total' => $input['total'],
                 'created_at' => now(),
                 'updated_at' => now(),

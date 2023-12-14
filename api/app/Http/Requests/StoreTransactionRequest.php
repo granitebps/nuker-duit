@@ -32,6 +32,9 @@ class StoreTransactionRequest extends FormRequest
             'amount' => [
                 'required'
             ],
+            'rate' => [
+                'required'
+            ],
             'total' => [
                 'required'
             ],

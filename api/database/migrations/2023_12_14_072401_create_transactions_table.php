@@ -17,6 +17,7 @@ return new class extends Migration
 
             $table->string('side');
             $table->decimal('amount');
+            $table->decimal('rate');
             $table->decimal('total');
 
             $table->timestamps();

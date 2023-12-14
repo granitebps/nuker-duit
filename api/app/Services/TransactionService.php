@@ -41,11 +41,6 @@ class TransactionService
 
     public function createTransaction(array $input)
     {
-        $total = $input['total'];
-        if ($input['side'] == 'sell') {
-            $total = 0 - $total;
-        }
-        $input['total'] = $total;
         return $this->transactionRepo->createTransaction($input);
     }
 }
