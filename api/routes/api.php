@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CurrencyController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +23,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
 
     Route::get('currencies', [CurrencyController::class, 'listCurrencies'])->name('currencies.index');
     Route::get('currencies/{currency}', [CurrencyController::class, 'getCurrency'])->name('currencies.show');
+
+    Route::get('transactions/summary', [TransactionController::class, 'getSummaryTransactions'])->name('transactions.getSummaryTransactions');
+    Route::post('transactions', [TransactionController::class, 'store'])->name('transactions.store');
 });
