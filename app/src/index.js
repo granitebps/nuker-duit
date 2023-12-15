@@ -12,10 +12,8 @@ axios.defaults.headers['Content-Type'] = 'application/json';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <App />
-      <Toaster position='top-right' toastOptions={{ duration: 5000 }} />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <App />
+    <Toaster position='top-right' toastOptions={{ duration: 5000 }} />
+  </BrowserRouter>
 );

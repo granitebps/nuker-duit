@@ -23,6 +23,8 @@ const Login = () => {
       const token = data.data.token;
       localStorage.setItem('nuker-duit-token', token);
 
+      toast.success('Success login');
+
       navigate('/home');
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -54,7 +56,7 @@ const Login = () => {
                 </Form.Group>
 
                 <Form.Group className='mb-3'>
-                  <Form.Label>Passwors</Form.Label>
+                  <Form.Label>Password</Form.Label>
                   <Form.Control
                     type='password'
                     placeholder='Password'

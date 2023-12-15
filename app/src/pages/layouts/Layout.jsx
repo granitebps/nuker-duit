@@ -24,12 +24,18 @@ const Layout = () => {
                 </Link>
               </li>
               <li>
-                <Link to={'buy'} className={`nav-link text-black ${path == '/buy' && 'active text-white'}`}>
+                <Link
+                  to={'transaction/buy'}
+                  className={`nav-link text-black ${path == '/transaction/buy' && 'active text-white'}`}
+                >
                   Buy Transaction
                 </Link>
               </li>
               <li>
-                <Link to={'sell'} className={`nav-link text-black ${path == '/sell' && 'active text-white'}`}>
+                <Link
+                  to={'transaction/sell'}
+                  className={`nav-link text-black ${path == '/transaction/sell' && 'active text-white'}`}
+                >
                   Sell Transaction
                 </Link>
               </li>

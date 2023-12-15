@@ -21,7 +21,7 @@ const Home = () => {
         setCurrencies(data.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
-          if (error.response.status) {
+          if (error.response.status == 401) {
             navigate('/');
             localStorage.removeItem('nuker-duit-token');
             return;
