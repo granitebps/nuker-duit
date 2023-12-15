@@ -10,11 +10,14 @@ class TransactionRepository
 
     public function getSummaryTransactions(array $param)
     {
-        return DB::table(self::TABLE)
-            ->join('currencies', 'currencies.id', '=', 'transactions.currency_id')
-            ->select(DB::raw("currencies.name as currency_name, SUM(CASE WHEN transactions.side = 'buy' THEN transactions.total ELSE 0 END) AS total_buy, SUM(CASE WHEN transactions.side = 'sell' THEN transactions.total ELSE 0 END) AS total_sell, SUM(CASE WHEN transactions.side = 'buy' THEN transactions.total ELSE -transactions.total END) AS net_total"))
+        return DB::table(CurrencyRepository::TABLE)
+            ->leftJoin('transactions', function ($join) use ($param) {
+                $join->on('currencies.id', '=', 'transactions.currency_id');
+                $join->on('transactions.created_at', '>=', DB::raw(sprintf("'%s'", $param['start'])));
+                $join->on('transactions.created_at', '<=', DB::raw(sprintf("'%s'", $param['end'])));
+            })
+            ->select(DB::raw("currencies.name as currency_name, COALESCE(SUM(CASE WHEN transactions.side = 'buy' THEN transactions.total ELSE 0 END), 0) AS total_buy, COALESCE(SUM(CASE WHEN transactions.side = 'sell' THEN transactions.total ELSE 0 END), 0) AS total_sell, COALESCE(SUM(CASE WHEN transactions.side = 'buy' THEN transactions.total ELSE -transactions.total END), 0) AS net_total"))
             ->groupBy('currencies.name')
-            ->whereBetween('transactions.created_at', [$param['start'], $param['end']])
             ->get();
     }
 

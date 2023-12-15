@@ -19,20 +19,20 @@ class TransactionService
         $end = '';
         switch (data_get($param, 'range')) {
             case 'today':
-                $start = now()->setHour(0)->setMinute(0)->setSecond(0);
-                $end = now();
+                $start = now()->setHour(0)->setMinute(0)->setSecond(0)->format('Y-m-d H:i:s');
+                $end = now()->format('Y-m-d H:i:s');
                 break;
             case 'week':
-                $start = now()->startOfWeek()->setHour(0)->setMinute(0)->setSecond(0);
-                $end = now();
+                $start = now()->startOfWeek()->setHour(0)->setMinute(0)->setSecond(0)->format('Y-m-d H:i:s');
+                $end = now()->format('Y-m-d H:i:s');
                 break;
             case 'month':
-                $start = now()->startOfMonth()->setHour(0)->setMinute(0)->setSecond(0);
-                $end = now();
+                $start = now()->startOfMonth()->setHour(0)->setMinute(0)->setSecond(0)->format('Y-m-d H:i:s');
+                $end = now()->format('Y-m-d H:i:s');
                 break;
             default:
-                $start = now()->setHour(0)->setMinute(0)->setSecond(0);
-                $end = now();
+                $start = now()->setHour(0)->setMinute(0)->setSecond(0)->format('Y-m-d H:i:s');
+                $end = now()->format('Y-m-d H:i:s');
         }
         $param['start'] = $start;
         $param['end'] = $end;
