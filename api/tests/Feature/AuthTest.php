@@ -20,6 +20,11 @@ test('user can login', function () {
                 ->has('data.token')
                 ->etc()
         );
+
+    $this->assertDatabaseHas('activities', [
+        'user_id' => $user->id,
+        'type' => 'LOGIN'
+    ]);
 });
 
 test('user cant login', function () {
@@ -38,6 +43,11 @@ test('user can logout', function () {
 
     deleteJson('api/logout')
         ->assertOk();
+
+    $this->assertDatabaseHas('activities', [
+        'user_id' => $user->id,
+        'type' => 'LOGOUT'
+    ]);
 });
 
 test('user cant logout', function () {
